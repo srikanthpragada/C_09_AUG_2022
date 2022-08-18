@@ -11,5 +11,5 @@ void main()
      cm = inches * 2.54;
      mm = cm * 10;
 
-     printf("Inches : %f, CM = %f, MM = %f", inches, cm, mm);
+     printf("Inches = %f, CM = %f, MM = %f", inches, cm, mm);
 }
