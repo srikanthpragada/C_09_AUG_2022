@@ -10,7 +10,7 @@ line(int len)
 main()
 {
 
-    line(20); // call function
+    line(10); // call function
     printf("\nSrikanth Technologies\n");
     line(30);
 
