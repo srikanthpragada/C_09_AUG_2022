@@ -1,6 +1,6 @@
 
 
-void print_array(int * a, int len)
+void print_array(int a[], int len)
 {
 int i;
    for(i = 0 ; i < len; i ++)
