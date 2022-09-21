@@ -24,6 +24,11 @@ void main()
   struct product p1;
   struct product p2 = {2, "Apple Watch", 40000};
 
+  struct product products[5];
+
+     products[0].id = 101;
+
+
 
      p1.id = 1;
      strcpy(p1.name,"iPhone 14");
