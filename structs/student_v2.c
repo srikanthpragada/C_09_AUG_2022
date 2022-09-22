@@ -4,7 +4,7 @@
 #define PYTHONFEE 12000
 #define JAVAFEE 15000
 
-enum courses { PYTHON , JAVA };
+enum courses { PYTHON = 1, JAVA = 2, FRONTEND = 3};
 
 struct student  {
     char name[20];
