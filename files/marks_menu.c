@@ -72,7 +72,59 @@ void average_marks()
 
 void highest_marks()
 {
+   FILE * fp;
+   int  rollno, count, highest = 0,  marks;
 
+      fp = fopen(FILENAME, "rb");
+
+      // Find out highest marks
+      while(1)
+      {
+          count = fread(&marks, sizeof(marks), 1, fp);
+          if (count == 0) // EOF
+             break;
+
+          if (marks >= highest)
+              highest = marks;
+      }
+
+      // Move file pointer to beginning
+      fseek(fp,0,SEEK_SET);
+
+      rollno = 1;
+      while(1)
+      {
+          count = fread(&marks, sizeof(marks), 1, fp);
+          if (count == 0) // EOF
+             break;
+
+          if (marks == highest)
+              printf("Rollno : %d  Marks : %d\n", rollno, marks);
+
+          rollno++;
+      }
+
+      fclose(fp);
+}
+
+
+void update_marks()
+{
+   FILE * fp;
+   int i, marks, rollno, count, pos;
+
+      fp = fopen(FILENAME, "r+b"); // read-write mode
+
+      printf("Enter rollno :");
+      scanf("%d", &rollno);
+      printf("Enter marks  :");
+      scanf("%d", &marks);
+
+      pos = (rollno - 1) * sizeof(marks);
+      fseek(fp, pos, SEEK_SET);  // move file pointer to given position
+      fwrite(&marks, sizeof(marks), 1, fp);
+      fclose(fp);
+      printf("Updated Successfully!\n");
 }
 
 void main()
@@ -87,8 +139,9 @@ void main()
          printf("2. Find Marks by rollno\n");
          printf("3. Average Marks\n");
          printf("4. Highest Marks\n");
-         printf("5. Exit\n\n");
-         printf("Enter choice [1-5] : ");
+         printf("5. Update Marks\n");
+         printf("6. Exit\n\n");
+         printf("Enter choice [1-6] : ");
          scanf("%d",&choice);
 
          switch(choice)
@@ -97,7 +150,8 @@ void main()
              case 2 : find_marks(); break;
              case 3 : average_marks(); break;
              case 4 : highest_marks(); break;
-             case 5 : return;
+             case 5 : update_marks(); break;
+             case 6 : return;
          } // switch
 
      } // while
